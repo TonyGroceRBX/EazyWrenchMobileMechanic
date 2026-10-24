@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Eazy Wrench Mobile Mechanic</title>
+    <meta name="description" content="Expert mobile mechanics in Lexington, KY with 6 years of experience. We fix anything, anywhere. $55 Diagnostics. Emergency Roadside Assistance available.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EazyWrench">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <style>
+        :root { --primary: #d32f2f; --dark: #0a0a0a; --light: #f8f9fa; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; padding-bottom: 76px; }
+        header { background-color: var(--dark); color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.5); border-bottom: 2px solid var(--primary); }
+        .logo-text { text-decoration: none; display: flex; flex-direction: column; justify-content: center; }
+        .logo-main { font-size: 1.8rem; font-weight: 900; line-height: 1; text-transform: uppercase; font-style: italic; }
+        .text-red { color: #d32f2f; } .text-grey { color: #aaaaaa; }
+        .logo-sub { font-size: 0.95rem; color: #ffffff; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
+        .call-btn { background-color: var(--primary); color: white; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80') center/cover; color: white; text-align: center; padding: 4rem 5%; }
+        .hero h1 { font-size: 2.4rem; margin-bottom: 1rem; line-height: 1.2; }
+        .hero p { font-size: 1.1rem; margin-bottom: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto; color: #e0e0e0; }
+        .badges { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .badge { background-color: rgba(255,255,255,0.1); border: 1px solid var(--primary); padding: 0.5rem 1rem; border-radius: 50px; font-weight: bold; color: #fff; }
+        .badge.alert { background-color: var(--primary); }
+        .emergency-btn { display: inline-block; background-color: var(--primary); color: white; padding: 1.2rem 2.5rem; font-size: 1.2rem; text-decoration: none; border-radius: 8px; font-weight: bold; }
+        .services { padding: 3rem 5%; text-align: center; }
+        .services h2 { font-size: 2rem; margin-bottom: 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; padding: 2rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--primary); }
+        .card h3 { margin-bottom: 1rem; font-size: 1.3rem; } .card p { color: #555; }
+        .highlight { color: var(--primary); font-weight: bold; }
+        .app-section { background: var(--dark); color: white; padding: 3rem 5%; text-align: center; border-top: 2px solid var(--primary); }
+        .app-section h2 { color: var(--primary); margin-bottom: 0.5rem; }
+        .app-section p { color: #ccc; max-width: 600px; margin: 0 auto 1.5rem; }
+        .app-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+        .app-btn { border: none; cursor: pointer; padding: 1rem 1.5rem; border-radius: 8px; font-weight: bold; font-size: 1rem; text-decoration: none; display: inline-block; }
+        .app-btn.red { background: var(--primary); color: white; }
+        .app-btn.white { background: white; color: var(--dark); }
+        #location-output { margin-top: 1.2rem; font-size: 0.95rem; color: #fff; word-break: break-word; }
+        #location-output a { color: #ff8a80; }
+        .social-feed { background-color: #e9ecef; padding: 3rem 5%; text-align: center; }
+        .social-feed h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .social-feed p { margin-bottom: 1.5rem; color: #555; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .fb-container { display: flex; justify-content: center; margin: 2rem 0; overflow: hidden; }
+        .fb-btn { display: inline-block; background-color: #1877F2; color: white; padding: 1rem 2.5rem; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; }
+        .area { background-color: var(--dark); color: white; padding: 3rem 5%; text-align: center; border-top: 2px solid var(--primary); }
+        .area h2 { color: var(--primary); margin-bottom: 1rem; } .area p { max-width: 700px; margin: 0 auto; color: #ccc; }
+        footer { background-color: #111; color: #888; text-align: center; padding: 2rem 5% 1rem; }
+        footer a { color: var(--primary); text-decoration: none; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #0a0a0a; border-top: 2px solid var(--primary); display: flex; z-index: 200; padding-bottom: env(safe-area-inset-bottom); }
+        .bottom-nav a, .bottom-nav button { flex: 1; background: none; border: none; color: white; text-decoration: none; padding: 0.85rem 0.25rem; font-size: 0.8rem; font-weight: bold; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .bottom-nav span.icon { font-size: 1.3rem; }
+        #install-banner { display: none; background: var(--primary); color: white; text-align: center; padding: 0.8rem; font-weight: bold; }
+        #install-banner button { margin-left: 0.75rem; background: white; color: var(--dark); border: none; padding: 0.4rem 1rem; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        @media (max-width: 600px) { header { flex-direction: column; gap: 1rem; } .hero h1 { font-size: 2rem; } .emergency-btn { width: 100%; padding: 1rem; } }
+    </style>
+</head>
+<body>
+    <div id="install-banner">Install the Eazy Wrench app <button id="install-btn">Install</button></div>
+
+    <header>
+        <a href="index.html#" class="logo-text">
+            <div class="logo-main"><span class="text-red">Eazy</span> <span class="text-grey">Wrench</span></div>
+            <div class="logo-sub">Mobile Mechanic</div>
+        </a>
+        <a href="tel:8599136991" class="call-btn">📞 (859) 913-6991</a>
+    </header>
+
+    <section class="hero">
+        <h1>We Come To You. We Fix Everything.</h1>
+        <p>Skip the tow truck and the waiting room. Expert auto repair and roadside assistance straight to your location.</p>
+        <div class="badges">
+            <span class="badge alert">🚨 8 AM - 5 PM Emergency Roadside</span>
+            <span class="badge">⭐ 6 Years Experience</span>
+            <span class="badge">🔍 $55 Diagnostics</span>
+            <span class="badge">🕒 Repairs: 8 AM - 5 PM</span>
+        </div>
+        <a href="tel:8599136991" class="emergency-btn">Call for Immediate Service</a>
+    </section>
+
+    <section class="services">
+        <h2>Complete Mobile Auto Care</h2>
+        <div class="grid">
+            <div class="card"><h3>🚨 Roadside Help</h3><p>Stranded? <span class="highlight"></span> jump starts, batteries, lockouts, flat tires, belts and hoses.</p></div>
+            <div class="card"><h3>🔍 Diagnostics</h3><p>Check engine light? We bring scanners to you. Standard <span class="highlight">$55 diagnostic fee</span>.</p></div>
+            <div class="card"><h3>🛠️ We Fix ANYTHING</h3><p>Engines, transmissions, suspension, brakes, alternators, electrical — done where you are.</p></div>
+        </div>
+    </section>
+
+    <!-- GPS + Push: app-only features -->
+    <section class="app-section" id="service">
+        <h2>📍 Need Help Now?</h2>
+        <p>Tap below to share your GPS location, then call or text it straight to the shop. Works on iPhone + Android.</p>
+        <div class="app-row">
+            <button class="app-btn red" id="gps-btn">📍 Share My Location</button>
+            <button class="app-btn white" id="push-btn">🔔 Enable Updates</button>
+        </div>
+        <div id="location-output"></div>
+    </section>
+
+    <section class="social-feed">
+        <h2>Connect With Us</h2>
+        <p>Latest work and updates from our Facebook page.</p>
+        <div class="fb-container">
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F61594242300112&tabs=timeline&width=500&height=700&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                width="500" height="700" style="border:none;overflow:hidden;max-width:100%;" scrolling="no" frameborder="0" allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
+        <a href="https://www.facebook.com/people/Eazy-Wrench-Mobile-LLC/61594242300112/" target="_blank" class="fb-btn">Visit Our Facebook Page</a>
+    </section>
+
+    <section class="area">
+        <h2>Proudly Serving Lexington, KY</h2>
+        <p>You provide the location, we bring the shop to you.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Eazy Wrench Mobile Mechanic. All rights reserved.</p>
+        <p><strong>Hours:</strong> Repairs 8 AM - 5 PM | <strong>Roadside</strong></p>
+        <p><a href="tel:8599136991">(859) 913-6991</a> | <a href="mailto:eazywrenchmobile@gmail.com">eazywrenchmobile@gmail.com</a></p>
+    </footer>
+
+    <nav class="bottom-nav">
+        <a href="tel:8599136991"><span class="icon">📞</span>Call</a>
+        <button id="nav-gps"><span class="icon">📍</span>Location</button>
+        <a href="https://www.facebook.com/people/Eazy-Wrench-Mobile-LLC/61594242300112/" target="_blank"><span class="icon">👍</span>Facebook</a>
+        <a href="mailto:eazywrenchmobile@gmail.com"><span class="icon">✉️</span>Contact</a>
+    </nav>
+
+<script>
+// Service worker (PWA offline)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
+
+// Install prompt
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('install-banner').style.display = 'block';
+});
+document.getElementById('install-btn').addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  document.getElementById('install-banner').style.display = 'none';
+});
+
+// GPS — works in browser PWA + Capacitor native
+async function shareLocation() {
+  const out = document.getElementById('location-output');
+  out.textContent = 'Getting location…';
+  try {
+    let lat, lng;
+    // Try Capacitor native first
+    if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Geolocation) {
+      const pos = await window.Capacitor.Plugins.Geolocation.getCurrentPosition({ enableHighAccuracy: true });
+      lat = pos.coords.latitude; lng = pos.coords.longitude;
+    } else if ('geolocation' in navigator) {
+      const pos = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, { enableHighAccuracy: true, timeout: 15000 }));
+      lat = pos.coords.latitude; lng = pos.coords.longitude;
+    } else {
+      throw new Error('Geolocation not supported on this device');
+    }
+    const maps = `https://www.google.com/maps?q=${lat},${lng}`;
+    out.innerHTML = `Your location: ${lat.toFixed(5)}, ${lng.toFixed(5)}<br><a href="https://eazywrenchmobilemechanic.com/${maps}" target="_blank">Open in Google Maps</a><br><br><a href="sms:+18599136991?&body=${encodeURIComponent('I need roadside help. My location: ' + maps)}" style="color:#fff;background:#d32f2f;padding:0.6rem 1.2rem;border-radius:6px;display:inline-block;margin-top:0.5rem;text-decoration:none;">Text Location to Mechanic</a>`;
+  } catch (err) {
+    out.textContent = 'Could not get location: ' + err.message + '. Please enable location permission.';
+  }
+}
+document.getElementById('gps-btn').addEventListener('click', shareLocation);
+document.getElementById('nav-gps').addEventListener('click', () => {
+  document.getElementById('service').scrollIntoView({ behavior: 'smooth' });
+  shareLocation();
+});
+
+// Push — browser stub + Capacitor native hook
+document.getElementById('push-btn').addEventListener('click', async () => {
+  try {
+    if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.PushNotifications) {
+      const { PushNotifications } = window.Capacitor.Plugins;
+      let perm = await PushNotifications.checkPermissions();
+      if (perm.receive !== 'granted') perm = await PushNotifications.requestPermissions();
+      if (perm.receive === 'granted') {
+        await PushNotifications.register();
+        alert('Push enabled! You will get job updates.');
+      } else {
+        alert('Push permission denied. Enable it in Settings.');
+      }
+    } else if ('Notification' in window) {
+      const perm = await Notification.requestPermission();
+      alert(perm === 'granted' ? 'Notifications enabled on this device.' : 'Notifications blocked. Enable in browser settings.');
+    } else {
+      alert('Push not supported here. It activates in the App Store / Play build.');
+    }
+  } catch (e) { alert('Push setup failed: ' + e.message); }
+});
+</script>
+</body>
+</html>
