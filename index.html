@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Eazy Wrench Mobile Mechanic</title>
-    <meta name="description" content="Expert mobile mechanics in Lexington, KY with 6 years of experience. We fix anything, anywhere. $55 Diagnostics. Emergency Roadside Assistance available.">
+    <meta name="description" content="Expert mobile mechanics in Lexington, KY with 6 years of experience. We fix anything, anywhere. $75 Diagnostics, Travel Fees May Apply. Emergency Roadside Assistance available.">
     <meta name="theme-color" content="#0a0a0a">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,7 +15,7 @@
     <link rel="icon" type="image/svg+xml" href="icon.svg">
     <style>
         :root { --primary: #d32f2f; --dark: #0a0a0a; --light: #f8f9fa; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; }
         body { background-color: var(--light); color: var(--dark); line-height: 1.6; padding-bottom: 76px; }
         header { background-color: var(--dark); color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.5); border-bottom: 2px solid var(--primary); }
         .logo-text { text-decoration: none; display: flex; flex-direction: column; justify-content: center; }
@@ -45,6 +45,23 @@
         .app-btn.white { background: white; color: var(--dark); }
         #location-output { margin-top: 1.2rem; font-size: 0.95rem; color: #fff; word-break: break-word; }
         #location-output a { color: #ff8a80; }
+
+        /* Media Gallery Styling */
+        .gallery-section { background-color: #111; color: white; padding: 3.5rem 5%; text-align: center; border-top: 2px solid var(--primary); }
+        .gallery-section h2 { font-size: 2.2rem; margin-bottom: 0.5rem; color: #fff; }
+        .gallery-section p { margin-bottom: 2rem; color: #aaa; max-width: 650px; margin-left: auto; margin-right: auto; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; max-width: 1200px; margin: 0 auto; }
+        .gallery-item { background: #1a1a1a; border-radius: 10px; overflow: hidden; border: 1px solid #333; display: flex; flex-direction: column; transition: transform 0.2s ease; cursor: pointer; }
+        .gallery-item:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .gallery-item img, .gallery-item video { width: 100%; height: 260px; object-fit: cover; background: #000; display: block; }
+        .gallery-caption { padding: 0.9rem; font-size: 0.9rem; font-weight: 600; color: #ddd; background: #181818; }
+
+        /* Lightbox Modal */
+        .lightbox-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; }
+        .lightbox-modal.active { display: flex; }
+        .lightbox-content { max-width: 90%; max-height: 85vh; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .lightbox-close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 2.5rem; font-weight: bold; cursor: pointer; line-height: 1; }
+
         .social-feed { background-color: #e9ecef; padding: 3rem 5%; text-align: center; }
         .social-feed h2 { font-size: 2rem; margin-bottom: 1rem; }
         .social-feed p { margin-bottom: 1.5rem; color: #555; max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -77,9 +94,9 @@
         <h1>We Come To You. We Fix Everything.</h1>
         <p>Skip the tow truck and the waiting room. Expert auto repair and roadside assistance straight to your location.</p>
         <div class="badges">
-            <span class="badge alert">🚨 8 AM - 5 PM Emergency Roadside</span>
+            <span class="badge alert">🕒 8 AM - 5 PM Emergency Roadside</span>
             <span class="badge">⭐ 6 Years Experience</span>
-            <span class="badge">🔍 $55 Diagnostics</span>
+            <span class="badge">🔍 $75 Diagnostics, Travel Fees May Apply</span>
             <span class="badge">🕒 Repairs: 8 AM - 5 PM</span>
         </div>
         <a href="tel:8599136991" class="emergency-btn">Call for Immediate Service</a>
@@ -88,32 +105,97 @@
     <section class="services">
         <h2>Complete Mobile Auto Care</h2>
         <div class="grid">
-            <div class="card"><h3>🚨 Roadside Help</h3><p>Stranded? <span class="highlight"></span> jump starts, batteries, lockouts, flat tires, belts and hoses.</p></div>
-            <div class="card"><h3>🔍 Diagnostics</h3><p>Check engine light? We bring scanners to you. Standard <span class="highlight">$55 diagnostic fee</span>.</p></div>
+            <div class="card"><h3>🛣️ Roadside Help</h3><p>Stranded? Jump starts, batteries, lockouts, flat tires, belts and hoses.</p></div>
+            <div class="card"><h3>🔍 Diagnostics</h3><p>Check engine light? We bring scanners to you. Standard <span class="highlight">$75 diagnostic fee, Travel Fees May Apply</span>.</p></div>
             <div class="card"><h3>🛠️ We Fix ANYTHING</h3><p>Engines, transmissions, suspension, brakes, alternators, electrical — done where you are.</p></div>
         </div>
     </section>
 
     <!-- GPS + Push: app-only features -->
     <section class="app-section" id="service">
-        <h2>📍 Need Help Now?</h2>
+        <h2>🆘 Need Help Now?</h2>
         <p>Tap below to share your GPS location, then call or text it straight to the shop. Works on iPhone + Android.</p>
         <div class="app-row">
-            <button class="app-btn red" id="gps-btn">📍 Share My Location</button>
-            <button class="app-btn white" id="push-btn">🔔 Enable Updates</button>
+            <button class="app-btn red" id="gps-btn">🌎 Share My Location</button>
+            <button class="app-btn white" id="push-btn">⏰ Enable Updates</button>
         </div>
         <div id="location-output"></div>
     </section>
 
+    <!-- Mobile Work Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <h2>🛠️ Our Work in Action</h2>
+        <p>Real jobs, real locations. Click any photo or video below to view full size.</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('799251574_122106467211474743_8072501467220112908_n.jpg', 'image')">
+                <img src="799251574_122106467211474743_8072501467220112908_n.jpg" alt="Nighttime Mobile Brake Repair" loading="lazy">
+                <div class="gallery-caption">😴 Late-Night Emergency Mobile Repair</div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('1000021303.mp4', 'video')">
+                <video playsinline preload="metadata" poster="850156008_122121421383474743_336493596898457832_n.jpg">
+                    <source src="1000021303.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-caption">🪛 Ignition Coil & Plug Servicing ▶️</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('1000021304.mp4', 'video')">
+                <video playsinline preload="metadata" poster="850156008_122121421383474743_336493596898457832_n.jpg">
+                    <source src="1000021304.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-caption">⚙️ Engine Component Replacement ▶️</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('825281815_122113155219474743_2633366998360056303_n.jpg', 'image')">
+                <img src="825281815_122113155219474743_2633366998360056303_n.jpg" alt="Suspension and Brake Hub Service" loading="lazy">
+                <div class="gallery-caption">⛓ On-Site Suspension & Hub Repairs</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('837800327_122118282753474743_5095222539111154243_n.jpg', 'image')">
+                <img src="837800327_122118282753474743_5095222539111154243_n.jpg" alt="Fresh Rotor & Caliper Assembly" loading="lazy">
+                <div class="gallery-caption">✨ New Brake Rotor & Caliper Installation</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('819561162_122111513025474743_8885978586714362443_n.jpg', 'image')">
+                <img src="819561162_122111513025474743_8885978586714362443_n.jpg" alt="Mobile Engine Bay Diagnostic" loading="lazy">
+                <div class="gallery-caption">🔍 Full Engine Bay Diagnostic</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('843324749_122120482065474743_9046887153477853627_n.jpg', 'image')">
+                <img src="843324749_122120482065474743_9046887153477853627_n.jpg" alt="Torch Heat Removal for Stuck Bolts" loading="lazy">
+                <div class="gallery-caption">🔥 Heating Stubborn Bolts on Location</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('818298228_122109658893474743_7208909227072182579_n.jpg', 'image')">
+                <img src="818298228_122109658893474743_7208909227072182579_n.jpg" alt="Rear Strut and Brake Job" loading="lazy">
+                <div class="gallery-caption">🗜 Rear Strut & Brake Service</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('852112240_122121421149474743_7944174203095295549_n.jpg', 'image')">
+                <img src="852112240_122121421149474743_7944174203095295549_n.jpg" alt="Shift Linkage Cable Replacement" loading="lazy">
+                <div class="gallery-caption">⚙️ Transmission Linkage Cable Install</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('850156008_122121421383474743_336493596898457832_n.jpg', 'image')">
+                <img src="850156008_122121421383474743_336493596898457832_n.jpg" alt="Mobile Mechanic On Duty" loading="lazy">
+                <div class="gallery-caption">🛠 On Duty & Ready To Help</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full-Screen Lightbox Modal -->
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <div id="lightbox-body" onclick="event.stopPropagation()"></div>
+    </div>
+
     <section class="social-feed">
         <h2>Connect With Us</h2>
-        <p>Latest work and updates from our Facebook page.</p>
-        <div class="fb-container">
-            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F61594242300112&tabs=timeline&width=500&height=700&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
-                width="500" height="700" style="border:none;overflow:hidden;max-width:100%;" scrolling="no" frameborder="0" allowfullscreen="true"
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <p>Check out our latest work, customer reviews, and updates directly on our Facebook page.</p>
+        <div class="fb-container" style="margin: 1.5rem 0;">
+            <a href="https://www.facebook.com/people/Eazy-Wrench-Mobile-LLC/61594242300112/" target="_blank" class="fb-btn">👍 Visit Our Facebook Page</a>
         </div>
-        <a href="https://www.facebook.com/people/Eazy-Wrench-Mobile-LLC/61594242300112/" target="_blank" class="fb-btn">Visit Our Facebook Page</a>
     </section>
 
     <section class="area">
@@ -129,12 +211,31 @@
 
     <nav class="bottom-nav">
         <a href="tel:8599136991"><span class="icon">📞</span>Call</a>
-        <button id="nav-gps"><span class="icon">📍</span>Location</button>
+        <button id="nav-gps"><span class="icon">🌎</span>Location</button>
         <a href="https://www.facebook.com/people/Eazy-Wrench-Mobile-LLC/61594242300112/" target="_blank"><span class="icon">👍</span>Facebook</a>
         <a href="mailto:eazywrenchmobile@gmail.com"><span class="icon">✉️</span>Contact</a>
     </nav>
 
 <script>
+// Lightbox Viewer
+function openLightbox(src, type) {
+    const modal = document.getElementById('lightbox');
+    const container = document.getElementById('lightbox-body');
+    if (type === 'image') {
+        container.innerHTML = `<img src="${src}" class="lightbox-content" alt="Enlarged media">`;
+    } else if (type === 'video') {
+        container.innerHTML = `<video src="${src}" class="lightbox-content" controls autoplay playsinline></video>`;
+    }
+    modal.classList.add('active');
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightbox');
+    const container = document.getElementById('lightbox-body');
+    modal.classList.remove('active');
+    container.innerHTML = '';
+}
+
 // Service worker (PWA offline)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
@@ -161,7 +262,6 @@ async function shareLocation() {
   out.textContent = 'Getting location…';
   try {
     let lat, lng;
-    // Try Capacitor native first
     if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Geolocation) {
       const pos = await window.Capacitor.Plugins.Geolocation.getCurrentPosition({ enableHighAccuracy: true });
       lat = pos.coords.latitude; lng = pos.coords.longitude;
@@ -172,7 +272,7 @@ async function shareLocation() {
       throw new Error('Geolocation not supported on this device');
     }
     const maps = `https://www.google.com/maps?q=${lat},${lng}`;
-    out.innerHTML = `Your location: ${lat.toFixed(5)}, ${lng.toFixed(5)}<br><a href="https://eazywrenchmobilemechanic.com/${maps}" target="_blank">Open in Google Maps</a><br><br><a href="sms:+18599136991?&body=${encodeURIComponent('I need roadside help. My location: ' + maps)}" style="color:#fff;background:#d32f2f;padding:0.6rem 1.2rem;border-radius:6px;display:inline-block;margin-top:0.5rem;text-decoration:none;">Text Location to Mechanic</a>`;
+    out.innerHTML = `Your location: ${lat.toFixed(5)}, ${lng.toFixed(5)}<br><a href="https://eazywrenchmobilemechanic.com/${maps}" target="_blank">Open in Google Maps</a><br><br><a href="https://sms:+18599136991?&body=${encodeURIComponent('I need roadside help. My location: ' + maps)}" style="color:#fff;background:#d32f2f;padding:0.6rem 1.2rem;border-radius:6px;display:inline-block;margin-top:0.5rem;text-decoration:none;">Text Location to Mechanic</a>`;
   } catch (err) {
     out.textContent = 'Could not get location: ' + err.message + '. Please enable location permission.';
   }
